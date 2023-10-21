@@ -44,15 +44,27 @@ function highlighActiveLink() {
     });
 }
 
+function showSpinner() {
+    document.querySelector('.spinner').classList.add('show')
+}
+
+function hideSpinner() {
+    document.querySelector('.spinner').classList.remove('show')
+}
+
 //FETCH DATA FROM THE API 
 
 async function fetchAPIData(endpoint) {
     const API_KEY = 'c85ea97ed7a635b180a1ebc57ba16ff3'
     const API_URL = 'https://api.themoviedb.org/3/'
 
+    showSpinner()
+
     const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`)
 
     const data = await response.json()
+
+    hideSpinner()
 
     return data;
 
